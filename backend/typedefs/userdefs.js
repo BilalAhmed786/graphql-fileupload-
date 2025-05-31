@@ -33,11 +33,9 @@ type Mutation {
 
   updateUser(
     id: ID!
-    name: String
-    email: String
-    age: Int
-    sex: String
-    image: Upload
+    name: String!
+    email: String!
+    age: Int!
   ): withvalid
 
   deleteUser(id: ID!): Boolean

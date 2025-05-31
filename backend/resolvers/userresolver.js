@@ -78,13 +78,11 @@ const userresolver = {
     console.error("Error uploading user:", error.message);
     throw new Error(error.message);
   }
-}
+},
 
-        ,
+        updateUser: async (_, { id, name, email, age}) => {
 
-        updateUser: async (_, { id, name, email, age, sex }) => {
-
-            if (!name || !email || !age || !sex) {
+            if (!name || !email || !age ) {
 
 
                 return { message: 'All fields required' }
@@ -92,9 +90,9 @@ const userresolver = {
 
             }
 
-            const sql = "update users set name = $1 ,email = $2,age = $3, sex = $4 where id = $5 RETURNING *"
+            const sql = "update users set name = $1 ,email = $2,age = $3 where id = $4 RETURNING *"
 
-            const result = await pool.query(sql, [name, email, age, sex, id])
+            const result = await pool.query(sql, [name, email,age,id])
 
             return { user: result.rows[0] }
         },
